@@ -1,6 +1,8 @@
-import requests
+""" import requests
 from tkinter import *
 
+
+"""
 def calcular(operador, num1, num2):
     try:
         if operador == '+':

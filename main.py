@@ -1,32 +1,45 @@
-# MOSTRA NA TELA OS OPERADORES.
-print('CALCULADORA')
-print('Mostre os operadores de cálculos')
-print('( + ) - adição')
-print('( * ) - multiplicação')
-print('( - ) - subtração')
-print('( / ) - divisão')
-print('Pressione qualquer outra tecla para sair')
+import requests
+from tkinter import *
 
-# Inserir os valores para fazer os cálculos
-x = int(input('Digite o primeiro número: '))
-y = int(input('Digite o segundo número: '))
+def calcular(operador, num1, num2):
+    try:
+        if operador == '+':
+            return num1 + num2
+        elif operador == '-':
+            return num1 - num2
+        elif operador == '*':
+            return num1 * num2
+        elif operador == '/':
+            return num1 / num2
+        else:
+            raise ValueError("Operador inválido.")
+    except ZeroDivisionError:
+        print("Divisão por zero não é permitida.")
+        return None
+    except ValueError:
+        print("Entrada inválida. Por favor, digite números.")
+        return None
 
-# Seleciona o operador do cálculo
-operador = input('Digite o operador de cálculo: ')
 
-# Faz a validação do operador e realiza o cálculo
-if operador not in ['+', '-', '*', '/']:
-    print('OPERADOR INVÁLIDO, POR FAVOR COLOQUE UM OPERADOR CORRETO!!!')
-else:
-    if operador == '+':
-        res = x + y
-        print(f'A soma de {x} + {y} é igual a {res}')
-    elif operador == '-':
-        res = x - y
-        print(f'A subtração de {x} - {y} é igual a {res}')
-    elif operador == '/':
-        res = x / y
-        print(f'A divisão de {x} / {y} é igual a {res}')        
-    elif operador == '*':
-        res = x * y
-        print(f'A multiplicação de {x} * {y} é igual a {res}')        
+def main():
+    while True:
+        print('CALCULADORA')
+        num1 = float(input('Digite o primeiro número: '))
+        operador = input("Digite o operador (+, -, *, /): ")
+        num2 = float(input('Digite o segundo número: '))
+        resultado = calcular(operador, num1, num2)
+        if resultado is not None:
+            print("Resultado:", resultado)
+        continuar = input("Deseja continuar? (s/n): ")
+        if continuar.lower() != 's':
+            break
+
+main()
+
+"""
+janela = Tk()
+
+
+janela.mainloop()
+
+"""
